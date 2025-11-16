@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueGUY Key</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle at top, #3b82f6, #1e3a8a, #0a1126);
+      background-size: 300% 300%;
+      animation: moveBG 10s ease-in-out infinite;
+    }
+
+    @keyframes moveBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .key-container {
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px 60px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 40px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    #key {
+      font-size: 24px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.2);
+      padding: 15px 20px;
+      border-radius: 12px;
+      user-select: all;
+      display: inline-block;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #key:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.05);
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: white;
+      color: #1e3a8a;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+      transition: 0.25s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .copied-msg {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #d1fae5;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .copied-msg.show {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="key-container">
+    <h1>Your BlueGUY Key</h1>
+    <div id="key"></div>
+    <br />
+    <button id="copyBtn">Copy Key</button>
+    <div class="copied-msg" id="copiedMsg">Key copied!</div>
+  </div>
+
+  <script>
+    const keys = [
+      "BlueG-12-1357-3567-21247-345",
+      "BlueG-75-348-1236-795-82",
+      "BlueG-10-64-9648-24871-347",
+      "BlueG-177934-85279-3279-13512"
+    ];
+
+    const keyEl = document.getElementById("key");
+    const copyBtn = document.getElementById("copyBtn");
+    const copiedMsg = document.getElementById("copiedMsg");
+
+    // Pick a random key
+    function generateKey() {
+      const randomIndex = Math.floor(Math.random() * keys.length);
+      keyEl.textContent = keys[randomIndex];
+    }
+
+    generateKey();
+
+    // Copy function
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(keyEl.textContent).then(() => {
+        copiedMsg.classList.add("show");
+        setTimeout(() => copiedMsg.classList.remove("show"), 1500);
+      });
+    });
+
+    // Optional: clicking the key itself also copies
+    keyEl.addEventListener("click", () => {
+      navigator.clipboard.writeText(keyEl.textContent).then(() => {
+        copiedMsg.classList.add("show");
+        setTimeout(() => copiedMsg.classList.remove("show"), 1500);
+      });
+    });
+  </script>
+</body>
+</html>
